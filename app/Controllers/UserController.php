@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\UserModel;
+use App\Models\KelasModel;
 
 class UserController extends BaseController
 {
@@ -25,28 +26,34 @@ class UserController extends BaseController
     // }
     public function create(){
 
-        $kelas = [
-            [
-                'id'=> 1,
-                'nama_kelas'=> 'A',
-            ],
-            [
-                'id'=> 2,
-                'nama_kelas'=> 'B',
-            ],
-            [
-                'id'=> 3,
-                'nama_kelas'=> 'C',
-            ],
-            [
-                'id'=> 4,
-                'nama_kelas'=> 'D',
-            ],
+        // $kelas = [
+        //     [
+        //         'id'=> 1,
+        //         'nama_kelas'=> 'A',
+        //     ],
+        //     [
+        //         'id'=> 2,
+        //         'nama_kelas'=> 'B',
+        //     ],
+        //     [
+        //         'id'=> 3,
+        //         'nama_kelas'=> 'C',
+        //     ],
+        //     [
+        //         'id'=> 4,
+        //         'nama_kelas'=> 'D',
+        //     ],
 
-        ];
+        // ];
+
+        $kelasModel = new KelasModel();
+
+        $kelas = $kelasModel->getKelas();
 
         $data = [
+            'title' => 'Create User',
             'kelas' => $kelas,
+
         ];
 
         return view('create_user', $data);
