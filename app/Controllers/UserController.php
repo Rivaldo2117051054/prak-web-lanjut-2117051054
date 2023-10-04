@@ -8,10 +8,24 @@ use App\Models\KelasModel;
 
 class UserController extends BaseController
 {
+
+    public $userModel;
+    public $kelasModel;
+
+    public function __construct(){
+
+        $this->userModel = new UserModel();
+        $this->kelasModel = new KelasModel();
+    }
     protected $helpers = ['form'];
     public function index()
     {
-        //
+        $data = [
+            'title' => 'List User',
+            'users' => $this->userModel->getUser(),
+        ];
+
+        return view('list_users', $data);
     }
 
     // public function profile($nama="",$kelas="",$npm =""){
@@ -46,9 +60,9 @@ class UserController extends BaseController
 
         // ];
 
-        $kelasModel = new KelasModel();
+        //$kelasModel = new KelasModel();
 
-        $kelas = $kelasModel->getKelas();
+        $kelas = $this->kelasModel->getKelas();
 
         $data = [
             'title' => 'Create User',
@@ -61,7 +75,7 @@ class UserController extends BaseController
 
     public function store(){
 
-        $userModel = new UserModel();
+       // $userModel = new UserModel();
 
         if (!$this->validate([
             'nama' => [
@@ -89,16 +103,18 @@ class UserController extends BaseController
         return redirect()->back()->withInput();
     }
 
-        $userModel->saveUser([
+        $this->userModel->saveUser([
             'nama'=> $this->request->getVar('nama'),
             'id_kelas'=> $this->request->getVar('kelas'),
             'npm'=> $this->request->getVar('npm'),
         ]);
-        $data = [
-            'nama' => $this->request->getVar('nama'),
-            'kelas' => $this->request->getVar('kelas'),
-            'npm' => $this->request->getVar('npm')
-        ];
-        return view('profile', $data);
+        // $data = [
+        //     'nama' => $this->request->getVar('nama'),
+        //     'kelas' => $this->request->getVar('kelas'),
+        //     'npm' => $this->request->getVar('npm')
+        // ];
+        // return view('profile', $data);
+
+        return redirect()->to('user');
     }
 }
