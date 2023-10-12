@@ -21,7 +21,11 @@
       <td><?= $user['nama'] ?></td>
       <td><?= $user['npm'] ?></td>
       <td><?= $user['nama_kelas'] ?></td>
-      <td> </td>
+      <td> 
+      <a href="<?= base_url('user/'.$user['id']) ?>" class="btn btn-info">Detail</a>
+                    <a href="#" class="btn btn-warning">Edit</a>
+                    <a href="#" class="btn btn-danger">Delete</a>
+      </td>
     </tr>
     
     <?php
