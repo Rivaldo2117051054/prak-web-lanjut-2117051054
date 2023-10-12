@@ -6,7 +6,7 @@
 <div class="container">
   <div class="card">
     <h2>Login Form</h2>
-    <form action="<?= base_url('/user/store') ?>" method="POST">
+    <form action="<?= base_url('/user/store') ?>" method="POST" enctype="multipart/form-data">
     <div>
       <input type="text" class="form-control <?=(empty(validation_show_error('nama'))) ? '' : 'is-invalid' ?>" id="nama" name="nama" placeholder="Masukan Nama" value="<?= old('nama') ?>">
       <div class="invalid-feedback">
@@ -29,6 +29,11 @@
         }
         ?>
         </select>
+        <tr>
+            <div class="mb-3 mt-3">
+                <input class="form-control" type="file" name="foto" id="foto">
+            </div>
+        </tr>
       <!-- <input type="text" name="kelas" placeholder="Masukan Kelas"> -->
       </br>
       <button type="submit">Login</button>
