@@ -21,11 +21,22 @@
       <td><?= $user['nama'] ?></td>
       <td><?= $user['npm'] ?></td>
       <td><?= $user['nama_kelas'] ?></td>
-      <td> 
-      <a href="<?= base_url('user/'.$user['id']) ?>" class="btn btn-info">Detail</a>
-                    <a href="#" class="btn btn-warning">Edit</a>
-                    <a href="#" class="btn btn-danger">Delete</a>
+      <td  class="d-flex justify-content-center"> 
+                    <a href="<?= base_url('user/'.$user['id']) ?>" class="btn btn-info">Detail</a>
+                    <a href="<?= base_url('user/' . $user['id'] . '/edit') ?>" class="btn btn-warning">Edit</a>
+                    <form id="delete-form-<?= $user['id'] ?>" action="<?= base_url('user/'.$user['id']) ?>" method="post">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <?= csrf_field() ?>
+                        <button type="button" class="btn btn-danger" onclick="confirmDelete(<?= $user['id'] ?>)">Delete</button>
+                    </form>
       </td>
+      <script>
+                    function confirmDelete(userId) {
+                        if (confirm("Are you sure you want to delete this item?")) {
+                            document.getElementById("delete-form-" + userId).submit();
+                        }
+                    }
+                </script>
     </tr>
     
     <?php
