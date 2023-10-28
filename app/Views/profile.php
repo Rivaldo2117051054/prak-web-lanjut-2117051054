@@ -9,12 +9,12 @@
 </head>
 <body>
 <div class="container-md d-flex justify-content-center align-items-center flex-column">
-    <img src="https://img.freepik.com/premium-vector/man-avatar-profile-picture-vector-illustration_268834-538.jpg" alt="Gambar Anda" width="300" height="300">
+<img src="<?= $user['foto'] ?? base_url('assets/img/card.jpg') ?>" alt="foto" style="width: 200px; height: 250px; border-radius: 35%;">
     <div class="card mt-3" style="width: 18rem;">
         <ul class="list-group list-group-flush">
-            <li class="list-group-item list-group-item-secondary"><?= $nama ?></li>
-            <li class="list-group-item list-group-item-secondary"><?= $kelas ?></li>
-            <li class="list-group-item list-group-item-secondary"><?= $npm ?></li>
+            <li class="list-group-item list-group-item-secondary"><?= $user['nama'] ?></li>
+            <li class="list-group-item list-group-item-secondary"><?= $user['npm'] ?></li>
+            <li class="list-group-item list-group-item-secondary"><?= $user['nama_kelas'] ?></li>
         </ul>
     </div>
 </div>

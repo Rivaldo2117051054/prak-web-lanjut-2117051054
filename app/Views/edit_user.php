@@ -1,20 +1,29 @@
 <?= $this->extend('layouts/app') ?>
 <?= $this->section('content') ?>
 
-
+<style>
+  img {
+    max-width: 100%; /* Atur nilai sesuai kebutuhan Anda */
+    height: auto;    /* Biarkan tinggi menyesuaikan secara proporsional */
+    display: block;  /* Hilangkan space ekstra di bawah gambar */
+    margin: auto;    /* Tengahkan gambar */
+  }
+</style>
 <body>
 <div class="container">
   <div class="card">
     <h2>Login Form</h2>
-    <form action="<?= base_url('/user/store') ?>" method="POST" enctype="multipart/form-data">
+    <form action="<?= base_url('user/' . $user['id']) ?>" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="_method" value="PUT">
+    <?= csrf_field() ?>
     <div>
-      <input type="text" class="form-control <?=(empty(validation_show_error('nama'))) ? '' : 'is-invalid' ?>" id="nama" name="nama" placeholder="Masukan Nama" value="<?= old('nama') ?>">
+      <input type="text" class="form-control <?=(empty(validation_show_error('nama'))) ? '' : 'is-invalid' ?>" id="nama" name="nama" placeholder="Masukan Nama" value="<?= $user['nama'] ?>">
       <div class="invalid-feedback">
           <?= validation_show_error('nama') ?>
       </div>
     </div>
     <div>
-      <input type="text" class="form-control <?=(empty(validation_show_error('npm'))) ? '' : 'is-invalid' ?>" id="npm" name="npm" placeholder="Masukan NPM" value="<?= old('npm') ?>">
+      <input type="text" class="form-control <?=(empty(validation_show_error('npm'))) ? '' : 'is-invalid' ?>" id="npm" name="npm" placeholder="Masukan NPM" value="<?= $user['npm']  ?>">
       <div class="invalid-feedback">
           <?= validation_show_error('npm') ?>
     </div>
@@ -31,7 +40,8 @@
         </select>
         <tr>
             <div class="mb-3 mt-3">
-                <input class="form-control" type="file" name="foto" id="foto">
+            <img src="<?= $user['foto']?? '<default-foto>' ?>">    
+            <input class="form-control" type="file" name="foto" id="foto">
             </div>
         </tr>
       <!-- <input type="text" name="kelas" placeholder="Masukan Kelas"> -->
