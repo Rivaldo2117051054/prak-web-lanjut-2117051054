@@ -1,7 +1,14 @@
 <?= $this->extend('layouts/app') ?>
 <?= $this->section('content') ?>
 
-
+<style>
+  img {
+    max-width: 100%; /* Atur nilai sesuai kebutuhan Anda */
+    height: auto;    /* Biarkan tinggi menyesuaikan secara proporsional */
+    display: block;  /* Hilangkan space ekstra di bawah gambar */
+    margin: auto;    /* Tengahkan gambar */
+  }
+</style>
 <body>
 <div class="container">
   <div class="card">

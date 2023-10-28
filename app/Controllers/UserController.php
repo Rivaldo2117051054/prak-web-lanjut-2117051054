@@ -186,4 +186,31 @@ class UserController extends BaseController
             ->with('success', 'Berhasil menghapus data');
         
     }
+
+    public function kelas(){
+        $kelas = $this->kelasModel->getKelas();
+
+        $data = [
+            'title' => 'Create Kelas',
+            'kelas' => $kelas,
+        ];
+        return view('create_kelas', $data);
+    }
+
+    public function kelasstore(){
+
+        $this->kelasModel->saveKelas([
+            'nama_kelas'=> $this->request->getVar('kelas'),
+        ]);
+
+        return redirect()->to('user');
+    }
+    public function listkelas(){
+        $data = [
+            'title' => 'List Kelas',
+            'users' => $this->kelasModel->getKelas(),
+        ];
+
+        return view('list_kelas', $data);
+    }
 }
